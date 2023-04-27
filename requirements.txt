@@ -1,0 +1,17 @@
+torch~=1.8.1+cu101
+SimpleITK~=2.1.1.2
+numpy~=1.22.4
+batchgenerators~=0.24
+scipy~=1.8.1
+scikit-image~=0.19.2
+torchvision~=0.9.1+cu101
+matplotlib~=3.5.2
+ptflops~=0.6.9
+pandas~=1.4.2
+torchmetrics~=0.8.2
+tqdm~=4.64.0
+timm~=0.4.12
+h5py~=3.6.0
+einops~=0.4.1
+monai~=0.8.1
+pylidc~=0.2.3
