@@ -83,7 +83,7 @@ class evaluateBase(GC):
             val_and_test_list = val_list
 
         if len(val_and_test_list) != 0:
-            # print(len(train_list), len(val_and_test_list))
+
             val_and_test_dataset = noduleSet(val_and_test_list, ['infer', 'Val'], None, self.show)
 
             val_and_test_iter = DataLoader(val_and_test_dataset, batch_size=self.val_and_test_batch_size,
