@@ -1,5 +1,3 @@
-
-
 | Model  name         | Access  link                                                                 |
 | ------------------- | ---------------------------------------------------------------------------- |
 | 2D  segmented model |                                                                              |
@@ -29,5 +27,3 @@
 | ASA                 | https://github.com/lhaof/asa                                                 |
 
 Note: " -" means that due to other factors, the corresponding github warehouse cannot be found for the time being. But you can access the model source code used in this experiment through the following link(https://github.com/BITEWKRER/exp-models). At the same time, we also open source 2D and 3D pre -processing data through the following links().
-
- The evaluation metric for this experiment was used from [(TorchMetrics)](https://torchmetrics.readthedocs.io/en/stable/)
