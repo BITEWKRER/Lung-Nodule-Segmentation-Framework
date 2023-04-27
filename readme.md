@@ -1,4 +1,4 @@
-The code sources of our evaluation model method in the LIDC-IDRI and Luna16 datasets are as follows:
+
 
 | Model  name         | Access  link                                                                 |
 | ------------------- | ---------------------------------------------------------------------------- |

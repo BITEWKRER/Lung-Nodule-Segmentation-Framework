@@ -38,15 +38,7 @@ class evaluateLIDC(evaluateBase):
         train_list = []
         val_and_test_list = []
         lists = [train_list, val_and_test_list]
-        # re = [
-        #     "*NonSolidGGO*.npy",
-        #     "*NonSolidMixed*.npy",
-        #     "*PartSolidMixed*.npy",
-        #     "*SolidMixed*.npy",
-        #     "*solid*.npy",
-        # ]
-        # for item in re:
-        #     lists = set_init(k, self.seg_path, item, lists)
+
         lists = set_init(k, self.seg_path_luna, None, lists)
         lists = set_init(k, self.seg_path_lidc, None, lists)
 
@@ -69,26 +61,14 @@ class evaluateLIDC(evaluateBase):
 
 
 if __name__ == '__main__':
-    loss_lists = ['dice']  # , 'bce', 'focal'
+    loss_lists = ['dice', 'bce', 'focal'] 
     model2d = ['unet', 'raunet', 'unetpp', 'cpfnet', 'unet3p', 'sgunet', 'bionet',
                'uctransnet', 'utnet', 'swinunet', 'unext']
-    model3d = ['unet', 'resunet', 'vnet', 'ynet', 'unetpp', 'reconnet', 'unetr', 'transbts', 'wingsnet', ]  #
-    model3d = ['vtunet', ]  # 'pcamnet',
+    model3d = ['unet', 'resunet', 'vnet', 'ynet', 'unetpp', 'reconnet', 'unetr', 'transbts', 'wingsnet', ]   
 
-    config.train = False
-    """
-     cmd 命令
-     conda activate jwj   
-     cd /zsm/jwj/baseExpV3/
-     cd /zljteam/jwj/baseExpV3/
-     nohup python evaluateLIDC.py >/dev/null 2>&1 &
-     """
-    # 2d 82245
-    # 3d 20903
     mode = config.mode
     train = config.train  # false
     evaluateLIDC(model3d, None).to('cuda:0')  # 整体评估
 
-    # model3d = ['vtunet', 'fedcrld', 'asa']  # luna 3d
     # for labels in getAllAttrs(True).values():  # todo 分项评估
     #     evaluateLIDC(model3d, labels).to(config.device)

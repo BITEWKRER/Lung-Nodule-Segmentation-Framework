@@ -37,15 +37,8 @@ class trainLIDC(trainBase):
         else:
             model = get_model3d(self.model_name, self.device)
 
-        if self.optimizer == 'adam':
-            # todo Adam
-            # optimum-unet weight——Decay 0.0001
-            # sgdr
-            optimizer = optim.Adam(model.parameters(), lr=self.lr, betas=(0.9, 0.999), eps=1e-08,
+        optimizer = optim.Adam(model.parameters(), lr=self.lr, betas=(0.9, 0.999), eps=1e-08,
                                    weight_decay=1e-4)
-        else:
-            # todo SGD
-            optimizer = torch.optim.SGD(model.parameters(), self.lr, momentum=0.9, weight_decay=1e-4)
 
         lossf = Loss(self.loss_name)
         scalar = torch.cuda.amp.GradScaler()
@@ -55,24 +48,9 @@ class trainLIDC(trainBase):
         val_and_test_list = []
         lists = [train_list, val_and_test_list]
 
-        # re = [
-        #     "*_NonSolidGGO_*.npy",
-        #     "*_NonSolidMixed_*.npy",
-        #     "*_PartSolidMixed_*.npy",
-        #     "*_SolidMixed_*.npy",
-        #     "*_Solid_*.npy",
-        # ]
-        # for item in re:
-        #     lists = set_init(k, self.seg_path_Lidc, item, lists)
-        #
-        # for item in re:
-        #     lists = set_init(k, self.seg_path_Luna, item, lists)
-        if self.FileV == 'npy':
-            lists = set_init(k, self.seg_path_Lidc, None, lists)
-            lists = set_init(k, self.seg_path_Luna, None, lists)
-        else:
-            lists = set_init(k, self.seg_path_Lidc, None, lists, format='*.nii.gz')
-            lists = set_init(k, self.seg_path_Luna, None, lists, format='*.nii.gz')
+       
+        lists = set_init(k, self.seg_path_Lidc, None, lists)
+        lists = set_init(k, self.seg_path_Luna, None, lists)
 
         if self.mode == '2d':
             train_dataset = noduleSet(train_list, ['Train', '2d'], self.transform, self.show, )
@@ -93,19 +71,10 @@ class trainLIDC(trainBase):
 
 
 if __name__ == '__main__':
-    """
-    cmd 命令
-    conda activate jwj
-    cd /zsm/jwj/baseExpV3/ 
-    cd /zljteam/jwj/baseExpV3/
-    nohup python trainLIDC.py >/dev/null 2>&1 &
-    """
-    # zsm 2d 80004 lidc
-    # zlj 3d 107368
+
     loss_lists = ['dice', 'bce', 'focal']
     model2d = ['unet', 'raunet', 'unetpp', 'cpfnet', 'unet3p', 'sgunet', 'bionet',
                'uctransnet', 'utnet', 'swinunet', 'unext']
     model3d = ['unet', 'resunet', 'vnet', 'ynet', 'unetpp', 'reconnet', 'unetr', 'transbts', 'wingsnet', ]
 
-    model3d = ['pcamnet', 'asa']  # 'vtunet',
     trainLIDC(model2d, model3d, loss_lists).to('cuda:0')
