@@ -112,14 +112,14 @@ class trainBase(GC):
                                     num_workers=self.num_worker, pin_memory=True, drop_last=True)
             val_and_test_dataset = noduleSet(val_and_test_list, ['Val', '2d'], None, self.show)
             val_and_test_iter = DataLoader(val_and_test_dataset, batch_size=self.val_and_test_batch_size,
-                                           num_workers=self.num_worker, pin_memory=True, shuffle=True, drop_last=True)
+                                           num_workers=self.num_worker, pin_memory=True, shuffle=False, drop_last=True)
         else:
             train_dataset = noduleSet(train_list, ['Train', '3d'], self.transform, self.show)
             train_iter = DataLoader(train_dataset, batch_size=self.train_batch_size, shuffle=True,
                                     num_workers=self.num_worker, pin_memory=True, drop_last=True)
             val_and_test_dataset = noduleSet(val_and_test_list, ['Val', '3d'], None, self.show)
             val_and_test_iter = DataLoader(val_and_test_dataset, batch_size=self.val_and_test_batch_size,
-                                           num_workers=self.num_worker, pin_memory=True, shuffle=True, drop_last=True)
+                                           num_workers=self.num_worker, pin_memory=True, shuffle=False, drop_last=True)
 
         return optimizer, model, lossf, scalar, eStop, train_iter, val_and_test_iter
 
