@@ -87,7 +87,7 @@ class evaluateBase(GC):
             val_and_test_dataset = noduleSet(val_and_test_list, ['infer', 'Val'], None, self.show)
 
             val_and_test_iter = DataLoader(val_and_test_dataset, batch_size=self.val_and_test_batch_size,
-                                           num_workers=self.num_worker, pin_memory=True, shuffle=True, drop_last=True)
+                                           num_workers=self.num_worker, pin_memory=True, shuffle=False, drop_last=True)
 
             load_model_k_checkpoint(self.pth_path, self.mode, self.model_name, self.optimizer, self.loss_name, model, k)
             return val_and_test_iter, model
